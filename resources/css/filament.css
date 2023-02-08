@@ -1,5 +1,6 @@
 /* @import "../../vendor/saade/filament-fullcalendar/resources/css/filament-fullcalendar.css"; */
+@import '../../vendor/filament/forms/dist/module.esm.css';
 
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';

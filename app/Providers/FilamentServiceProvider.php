@@ -6,6 +6,7 @@ namespace App\Providers;
 use Filament\Facades\Filament;
 use Illuminate\Foundation\Vite;
 use Illuminate\Support\ServiceProvider;
+use pxlrbt\FilamentEnvironmentIndicator\FilamentEnvironmentIndicator;
 
 class FilamentServiceProvider extends ServiceProvider
 {
@@ -29,5 +30,13 @@ class FilamentServiceProvider extends ServiceProvider
       Filament::serving(function () {
         Filament::registerViteTheme('resources/css/filament.css');
       });
+
+      FilamentEnvironmentIndicator::configureUsing(function (FilamentEnvironmentIndicator $indicator) {
+        $indicator->color = fn () => match (app()->environment()) {
+          'production' => null,
+          'staging' => 'yellow',
+          default => '#22c55e',
+        };
+      }, isImportant: true);
     }
 }

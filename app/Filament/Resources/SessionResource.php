@@ -12,7 +12,6 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\SessionResource\Widgets\CalendarWidget;
 
 class SessionResource extends Resource
 {
@@ -33,13 +32,6 @@ class SessionResource extends Resource
             ]);
     }
 
-    protected function getHeaderWidgets(): array
-    {
-        return [
-            CalendarWidget::class()
-        ];
-    }
-
     public static function table(Table $table): Table
     {
         return $table
@@ -50,10 +42,10 @@ class SessionResource extends Resource
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('end_at')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                // Tables\Columns\TextColumn::make('created_at')
+                //     ->dateTime(),
+                // Tables\Columns\TextColumn::make('updated_at')
+                //     ->dateTime(),
             ])
             ->filters([
                 //

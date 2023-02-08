@@ -10,6 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Filters\Layout;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -23,7 +24,18 @@ class TherapistResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('user_id'),
+                Forms\Components\TextInput::make('first_name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('last_name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Select::make('gender')
+                    ->options([
+                        'femme' => 'Femme',
+                        'homme' => 'Homme',
+                    ])
             ]);
     }
 
@@ -31,11 +43,16 @@ class TherapistResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('user_id'),
+                Tables\Columns\TextColumn::make('first_name'),
+                Tables\Columns\TextColumn::make('last_name'),
+                Tables\Columns\TextColumn::make('gender')
+                    ->sortable(),
             ])
-            ->filters([
-                //
-            ])
+            // ->filters(
+            //     ['gender'],
+            //     layout: Layout::AboveContent,
+            // )
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
